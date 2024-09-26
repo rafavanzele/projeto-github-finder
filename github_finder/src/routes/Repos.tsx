@@ -27,7 +27,12 @@ const Repos = () => {
       const data = await res.json()
 
       setIsLoading(false)
-      setRepos(data)
+
+      let orderedRepos = data.sort((a: RepoProps, b: RepoProps) => b.stargazers_count - a.stargazers_count)
+
+      orderedRepos = orderedRepos.slice(0, 5)
+
+      setRepos(orderedRepos)
     }
 
     if (username) {
